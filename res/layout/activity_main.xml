@@ -1,0 +1,103 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bk"
+    android:gravity="bottom|top"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.sabulaji.and2crobh.MainActivity" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="And2CRobh"
+        android:textSize="37sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="set host here"
+            android:maxLines="1"
+            android:text="192.168.137.2" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/button_go"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:text="GO" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/imageButton_l"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/l" />
+
+        <ImageButton
+            android:id="@+id/imageButton_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/imageButton_l"
+            android:src="@drawable/d" />
+
+        <ImageButton
+            android:id="@+id/imageButton_cl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/imageButton_lo"
+            android:src="@drawable/oclip" />
+
+        <ImageButton
+            android:id="@+id/imageButton_lo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageButton_cl"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/olo" />
+
+        <ImageButton
+            android:id="@+id/imageButton_r"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageButton_lo"
+            android:layout_toRightOf="@+id/imageButton_d"
+            android:src="@drawable/r" />
+
+        <ImageButton
+            android:id="@+id/imageButton_u"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageButton_l"
+            android:layout_toRightOf="@+id/imageButton_l"
+            android:src="@drawable/u" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -157,13 +157,13 @@ public class MainActivity extends Activity implements OnClickListener {
 		writer.print(command);
 		writer.flush();
 		Log.d("MainActivity", command);
-		try {
+		/*try {
 			socket.close();
 			Log.d("MainActivity", "socket.close");
 		} catch (IOException e) {
 			//handlerException(e, "close exception: " + e.toString());
 			Log.d("MainActivity", "command-socket.close()-io");
-		}
+		}*/
 	}
 	
 	class myThread extends Thread{
@@ -176,27 +176,27 @@ public class MainActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
-		new myThread().start();
+		//new myThread().start();
 		
 		switch (v.getId()){
 		case R.id.imageButton_u:
 			Log.d("MainActivity", "onClick_up");
-			command("up");
+			command("w");
 			break;
 		case R.id.imageButton_d:
-			command("down");
+			command("s");
 			break;
 		case R.id.imageButton_l:
-			command("left");
+			command("a");
 			break;
 		case R.id.imageButton_r:
-			command("right");
+			command("d");
 			break;
 		case R.id.imageButton_cl:
-			command("clip");
+			command("c");
 			break;
 		case R.id.imageButton_lo:
-			command("loosen");
+			command("l");
 			break;
 		}
 	}

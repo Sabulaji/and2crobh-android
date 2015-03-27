@@ -8,41 +8,48 @@ import java.net.UnknownHostException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends Activity implements /*OnClickListener,*/OnTouchListener {
 
-	public static final int UPDATE_BUTTONS = 1;
+	//public static final int UPDATE_BUTTONS = 1;
 	private ImageButton button_u, button_d, button_l, button_r, button_cl,button_lo;
 	private Button button_go;
 	private EditText setHost;
 	int PORT = 8888;
-	String HOST = "192.168.137.3";
+	String HOST = "192.168.137.2";
 	String command = "";
+	String cmd = "";
 	Socket socket;
 	PrintWriter writer;
-	int flag = 0;
+	//int flag = 0;
+	Boolean flag = false;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initButtons();
+		
 		button_go.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v){
 				
 				HOST = setHost.getText().toString();
 				Log.d("MainActivity", "set host:" + HOST);
-				flag = 1;
+				//flag = 1;
 				new myThread().start();
     			Log.d("MainActivity", "go_click_myThread().start()");  
     			initedButtons();
     			Log.d("MainActivity", "onclick-initedbuttons");
+    			
 			}
 		});
 		
@@ -72,12 +79,19 @@ public class MainActivity extends Activity implements OnClickListener {
 		button_lo = (ImageButton) findViewById(R.id.imageButton_lo);
 		button_go = (Button) findViewById(R.id.button_go);
 
-		button_u.setOnClickListener(this);
+		/*button_u.setOnClickListener(this);
 		button_d.setOnClickListener(this);
 		button_l.setOnClickListener(this);
 		button_r.setOnClickListener(this);
 		button_cl.setOnClickListener(this);
-		button_lo.setOnClickListener(this);
+		button_lo.setOnClickListener(this);*/
+		
+		button_u.setOnTouchListener(this);
+		button_d.setOnTouchListener(this);
+		button_l.setOnTouchListener(this);
+		button_r.setOnTouchListener(this);
+		button_cl.setOnTouchListener(this);
+		button_lo.setOnTouchListener(this);
 		
 		button_u.setEnabled(false);
 		button_d.setEnabled(false);
@@ -172,15 +186,29 @@ public class MainActivity extends Activity implements OnClickListener {
 			initSocket();			
 		}
 	}
+	
+	class longPress extends Thread{
+		@Override
+		public void run(){
+			while(flag){
+				command(cmd);
+				try {
+					Thread.sleep(500);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+		}
+	}
 
-	@Override
+	/*@Override
 	public void onClick(View v) {
 		
 		//new myThread().start();
 		
 		switch (v.getId()){
 		case R.id.imageButton_u:
-			Log.d("MainActivity", "onClick_up");
+			//Log.d("MainActivity", "onClick_up");
 			command("w");
 			break;
 		case R.id.imageButton_d:
@@ -199,6 +227,82 @@ public class MainActivity extends Activity implements OnClickListener {
 			command("l");
 			break;
 		}
+	}*/
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		switch (v.getId()){
+		case R.id.imageButton_u:			
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				Log.d("MainActivity", "w_touch_down");
+				cmd = "w";
+				flag = true;
+				new longPress().start();
+			}
+			if(event.getAction() == MotionEvent.ACTION_UP){
+				Log.d("MainActivity", "w_touch_up");
+				flag = false;
+				cmd = "";
+			}
+			break;
+		case R.id.imageButton_d:
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				cmd = "s";
+				flag = true;
+				new longPress().start();
+			}
+			if(event.getAction() == MotionEvent.ACTION_UP){
+				flag = false;
+				cmd = "";
+			}
+			break;
+		case R.id.imageButton_l:
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				cmd = "a";
+				flag = true;
+				new longPress().start();
+			}
+			if(event.getAction() == MotionEvent.ACTION_UP){
+				flag = false;
+				cmd = "";
+			}
+			break;
+		case R.id.imageButton_r:
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				cmd = "d";
+				flag = true;
+				new longPress().start();
+			}
+			if(event.getAction() == MotionEvent.ACTION_UP){
+				flag = false;
+				cmd = "";
+			}
+			break;
+		case R.id.imageButton_cl:
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				cmd = "c";
+				flag = true;
+				new longPress().start();
+			}
+			if(event.getAction() == MotionEvent.ACTION_UP){
+				flag = false;
+				cmd = "";
+			}
+			break;
+		case R.id.imageButton_lo:
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				cmd = "l";
+				flag = true;
+				new longPress().start();
+			}
+			if(event.getAction() == MotionEvent.ACTION_UP){
+				flag = false;
+				cmd = "";
+			}
+			break;
+		}
+		return false;
 	}
 
 /*	private Handler handler = new Handler(){

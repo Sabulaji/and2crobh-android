@@ -12,15 +12,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity implements /*OnClickListener,*/OnTouchListener {
 
 	//public static final int UPDATE_BUTTONS = 1;
-	private ImageButton button_u, button_d, button_l, button_r, button_cl,button_lo;
-	private Button button_go;
+	private ImageButton button_w, button_s, button_a, button_d, button_cl,button_lo;
+	private ImageButton button_go;
 	private EditText setHost;
 	int PORT = 8888;
 	String HOST = "192.168.137.2";
@@ -71,13 +70,13 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 	 */
 
 	private void initButtons() {
-		button_u = (ImageButton) findViewById(R.id.imageButton_u);
+		button_w = (ImageButton) findViewById(R.id.imageButton_w);
+		button_s = (ImageButton) findViewById(R.id.imageButton_s);
+		button_a = (ImageButton) findViewById(R.id.imageButton_a);
 		button_d = (ImageButton) findViewById(R.id.imageButton_d);
-		button_l = (ImageButton) findViewById(R.id.imageButton_l);
-		button_r = (ImageButton) findViewById(R.id.imageButton_r);
 		button_cl = (ImageButton) findViewById(R.id.imageButton_cl);
 		button_lo = (ImageButton) findViewById(R.id.imageButton_lo);
-		button_go = (Button) findViewById(R.id.button_go);
+		button_go = (ImageButton) findViewById(R.id.imageButton_go);
 
 		/*button_u.setOnClickListener(this);
 		button_d.setOnClickListener(this);
@@ -86,17 +85,17 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 		button_cl.setOnClickListener(this);
 		button_lo.setOnClickListener(this);*/
 		
-		button_u.setOnTouchListener(this);
+		button_w.setOnTouchListener(this);
+		button_s.setOnTouchListener(this);
+		button_a.setOnTouchListener(this);
 		button_d.setOnTouchListener(this);
-		button_l.setOnTouchListener(this);
-		button_r.setOnTouchListener(this);
 		button_cl.setOnTouchListener(this);
 		button_lo.setOnTouchListener(this);
 		
-		button_u.setEnabled(false);
+		button_w.setEnabled(false);
+		button_s.setEnabled(false);
+		button_a.setEnabled(false);
 		button_d.setEnabled(false);
-		button_l.setEnabled(false);
-		button_r.setEnabled(false);
 		button_cl.setEnabled(false);
 		button_lo.setEnabled(false);
 		
@@ -158,18 +157,23 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 	private void initedButtons() {
 		button_go.setEnabled(false);
 		setHost.setEnabled(false);
-		button_u.setEnabled(true);
+		button_w.setEnabled(true);
+		button_s.setEnabled(true);
+		button_a.setEnabled(true);
 		button_d.setEnabled(true);
-		button_l.setEnabled(true);
-		button_r.setEnabled(true);
 		button_cl.setEnabled(true);
 		button_lo.setEnabled(true);		
 	}
 
 	private void command(String command) {
 		this.command = command;
-		writer.print(command);
-		writer.flush();
+		try {
+			writer.print(command);
+			writer.flush();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		Log.d("MainActivity", command);
 		/*try {
 			socket.close();
@@ -193,9 +197,9 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 			while(flag){
 				command(cmd);
 				try {
-					Thread.sleep(500);
+					Thread.sleep(250);
 				} catch (Exception e) {
-					// TODO: handle exception
+					break;
 				}
 			}
 		}
@@ -231,9 +235,8 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
 		switch (v.getId()){
-		case R.id.imageButton_u:			
+		case R.id.imageButton_w:			
 			if(event.getAction() == MotionEvent.ACTION_DOWN){
 				Log.d("MainActivity", "w_touch_down");
 				cmd = "w";
@@ -246,7 +249,7 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 				cmd = "";
 			}
 			break;
-		case R.id.imageButton_d:
+		case R.id.imageButton_s:
 			if(event.getAction() == MotionEvent.ACTION_DOWN){
 				cmd = "s";
 				flag = true;
@@ -257,7 +260,7 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 				cmd = "";
 			}
 			break;
-		case R.id.imageButton_l:
+		case R.id.imageButton_a:
 			if(event.getAction() == MotionEvent.ACTION_DOWN){
 				cmd = "a";
 				flag = true;
@@ -268,7 +271,7 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 				cmd = "";
 			}
 			break;
-		case R.id.imageButton_r:
+		case R.id.imageButton_d:
 			if(event.getAction() == MotionEvent.ACTION_DOWN){
 				cmd = "d";
 				flag = true;
@@ -317,4 +320,16 @@ public class MainActivity extends Activity implements /*OnClickListener,*/OnTouc
 			}				
 		}
 	};*/
+	
+	/*@Override
+	protected void onDestroy(){
+		super.onDestroy();
+		try {
+			socket.close();
+			Log.d("MainActivity", "socket.close");
+		} catch (IOException e) {
+			Log.d("MainActivity", "command-socket.close()-io");	
+		}
+	}*/
+	
 }

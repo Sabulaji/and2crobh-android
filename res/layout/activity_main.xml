@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bk"
+    android:background="@drawable/test"
     android:gravity="bottom|top"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -19,84 +19,104 @@
         android:text="And2CRobh"
         android:textSize="37sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="right" >
+        android:ems="10"
+        android:hint="set host here"
+        android:maxLines="1"
+        android:text="192.168.137.2" >
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="set host here"
-            android:maxLines="1"
-            android:text="192.168.137.2" >
-
-            <requestFocus />
-        </EditText>
-
-        <Button
-            android:id="@+id/button_go"
-            android:layout_width="98dp"
-            android:layout_height="wrap_content"
-            android:text="GO" />
-
-    </LinearLayout>
+      <!--   <requestFocus /> -->
+    </EditText>
 
     <RelativeLayout
         android:id="@+id/RelativeLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#00000000"
         android:orientation="vertical" >
 
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/newbigbg" />
+
         <ImageButton
-            android:id="@+id/imageButton_l"
+            android:id="@+id/imageButton_go"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/l" />
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="131dp"
+            android:layout_marginRight="362dp"
+            android:background="#00000000"
+            android:src="@drawable/button_start" />
+
+        <ImageButton
+            android:id="@+id/imageButton_lo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="111dp"
+            android:layout_marginRight="185dp"
+            android:background="#00000000"
+            android:src="@drawable/button_b" />
+
+        <ImageButton
+            android:id="@+id/imageButton_cl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageButton_lo"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="116dp"
+            android:layout_marginBottom="10dp"
+            android:background="#00000000"
+            android:src="@drawable/button_a" />
 
         <ImageButton
             android:id="@+id/imageButton_d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/imageButton_l"
-            android:src="@drawable/d" />
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="157dp"
+            android:layout_marginLeft="196dp"
+            android:background="#00000000"
+            android:src="@drawable/newd" />
 
         <ImageButton
-            android:id="@+id/imageButton_cl"
+            android:id="@+id/imageButton_s"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/imageButton_lo"
-            android:src="@drawable/oclip" />
+            android:layout_alignLeft="@+id/imageButton_w"
+            android:layout_alignTop="@+id/imageButton_go"
+            android:background="#00000000"
+            android:src="@drawable/news" />
 
         <ImageButton
-            android:id="@+id/imageButton_lo"
+            android:id="@+id/imageButton_a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/imageButton_cl"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/olo" />
+            android:layout_alignRight="@+id/imageButton_d"
+            android:layout_alignTop="@+id/imageButton_d"
+            android:layout_marginRight="83dp"
+            android:background="#00000000"
+            android:src="@drawable/newa" />
 
         <ImageButton
-            android:id="@+id/imageButton_r"
+            android:id="@+id/imageButton_w"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageButton_lo"
-            android:layout_toRightOf="@+id/imageButton_d"
-            android:src="@drawable/r" />
-
-        <ImageButton
-            android:id="@+id/imageButton_u"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/imageButton_l"
-            android:layout_toRightOf="@+id/imageButton_l"
-            android:src="@drawable/u" />
+            android:layout_above="@+id/imageButton_d"
+            android:layout_alignRight="@+id/imageButton_d"
+            android:layout_marginRight="39dp"
+            android:background="#00000000"
+            android:src="@drawable/neww" />
 
     </RelativeLayout>
 
